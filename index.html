@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .click-element:hover {
+        cursor: pointer;
+      }
+
+      .click-element:disabled {
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <button data-button="first" class="click-element" onclick="onClick()">
+      eerste
+    </button>
+    <button data-button="second" class="click-element" disabled onclick="addScore()">tweede</button>
+    <div data-counter>0</div>
+
+    <script>
+      const counterElement = document.querySelector("[data-counter]");
+      const firstButton = document.querySelector("[data-button='first']");
+      const secondButton = document.querySelector("[data-button='second']");
+
+      let counter = 0;
+      let clickCounter = 0;
+
+      const onClick = () => {
+        counter++;
+        counterElement.textContent = counter;
+        clickCounter++;
+
+        if (clickCounter === 10) {
+          firstButton.disabled = true;
+          secondButton.disabled = false;
+        }
+      };
+
+      const addScore = () => {
+        counter += 2;
+        counterElement.textContent = counter;
+
+        firstButton.disabled = false;
+        secondButton.disabled = true;
+        clickCounter = 0;
+      };
+    </script>
+  </body>
+</html>
